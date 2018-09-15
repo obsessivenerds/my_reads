@@ -2,6 +2,7 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Book from './components/book'
+import Shelf from './components/shelf'
 
 const extract = {
   bookshelf: {
@@ -42,7 +43,7 @@ const extract = {
             },
             title: '1776',
             author: 'David McCullough',
-            shelf: 'currentlyReading'
+            shelf: 'wantToRead'
           },
           {
             bookCover: {
@@ -52,7 +53,7 @@ const extract = {
             },
             title: 'Harry Potter and the Sorcerer\'s Stone',
             author: 'J.K. Rowling',
-            shelf: 'currentlyReading'
+            shelf: 'wantToRead'
           }
         ],
       },
@@ -67,7 +68,7 @@ const extract = {
             },
             title: 'The Hobbit',
             author: 'Tolkien',
-            shelf: 'currentlyReading'
+            shelf: 'read'
           },
           {
             bookCover: {
@@ -77,7 +78,7 @@ const extract = {
             },
             title: 'Oh, the Places You\'ll Go!',
             author: 'Dr. Suess',
-            shelf: 'currentlyReading'
+            shelf: 'read'
           },
           {
             bookCover: {
@@ -87,7 +88,7 @@ const extract = {
             },
             title: 'The Adventures of Tom Sawyer',
             author: 'Mark Twain',
-            shelf: 'currentlyReading'
+            shelf: 'read'
           }
         ]
       }
@@ -136,32 +137,7 @@ class BooksApp extends React.Component {
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-              <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {extract.bookshelf.shelves[0].books.map(book => <Book book={book} />)}
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {extract.bookshelf.shelves[1].books.map(book => <Book book={book} />)}
-                    </ol>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      {extract.bookshelf.shelves[2].books.map(book => <Book book={book} />)}
-                    </ol>
-                  </div>
-                </div>
-              </div>
+              {extract.bookshelf.shelves.map(shelf => <Shelf shelf={shelf}/>)}
             </div>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>

@@ -14,7 +14,7 @@ export default class Book extends Component {
               <select>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">{shelf}</option>
-                <option value="wantToRead">Want to Read</option>
+                <option value="wantToRead">{shelf}</option>
                 <option value="read">Read</option>
                 <option value="none">None</option>
               </select>
