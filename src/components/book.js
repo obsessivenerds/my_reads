@@ -6,15 +6,15 @@ export default class Book extends Component {
     const { width, height, image } = bookCover;
 
     return (
-      <li>
+      <li className="test">
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: width, height: height, backgroundImage: image }}></div>
             <div className="book-shelf-changer">
-              <select>
+              <select value={shelf}>
                 <option value="move" disabled>Move to...</option>
-                <option value="currentlyReading">{shelf}</option>
-                <option value="wantToRead">{shelf}</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want To Read</option>
                 <option value="read">Read</option>
                 <option value="none">None</option>
               </select>
