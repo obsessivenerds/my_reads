@@ -2,16 +2,17 @@ import React, { Component } from 'react'
 
 export default class Book extends Component {
   render () {
-    const {title, author, shelf, bookCover} = this.props.book;
-    const { width, height, image } = bookCover;
+
+    const {book} = this.props;
+    const {imageLinks, authors, title, shelf} = book;
 
     return (
-      <li className="test">
+      <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: width, height: height, backgroundImage: image }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}></div>
             <div className="book-shelf-changer">
-              <select value={shelf}>
+              <select value={shelf} onChange={() => {}}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want To Read</option>
@@ -21,7 +22,7 @@ export default class Book extends Component {
             </div>
           </div>
           <div className="book-title">{title}</div>
-          <div className="book-authors">{author}</div>
+          {authors.map(authors => (<div key={authors} className="book-authors">{authors}</div>))}
         </div>
       </li>
     )
