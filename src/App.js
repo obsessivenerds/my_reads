@@ -28,6 +28,14 @@ class BooksApp extends React.Component {
     this.setState({ showSearchPage: true})
   }
 
+  switchShelf = (modifyBook, newShelf) => {
+    BooksAPI.update(modifyBook, newShelf)
+    .then(res => {
+      BooksAPI.getAll()
+    .then(res => this.setState({books: res}))
+  })
+  }
+
   render() {
     const {books} = this.state;
 
@@ -36,7 +44,7 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <Search searchBack={this.searchBack}/>
         ) : (
-          <BookList books={books} bookSearch={this.bookSearch}/>
+          <BookList books={books} bookSearch={this.bookSearch} switchShelf={this.switchShelf}/>
         )}
       </div>
     )

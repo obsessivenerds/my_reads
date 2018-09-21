@@ -17,7 +17,7 @@ export default class BookList extends Component {
   }
 
   render () {
-    const {bookSearch, books} = this.props;
+    const {bookSearch, books, switchShelf} = this.props;
     const shelves = this.bookShelf(books);
 
     return (
@@ -27,7 +27,7 @@ export default class BookList extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            {shelves.map(shelf => <Shelf key={shelf.type} shelf={shelf}/>)}
+            {shelves.map(shelf => <Shelf key={shelf.type} shelf={shelf} switchShelf={switchShelf}/>)}
           </div>
         </div>
         <div className="open-search">
