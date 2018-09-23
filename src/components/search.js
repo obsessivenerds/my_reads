@@ -1,9 +1,37 @@
 import React, { Component } from 'react'
+import * as BooksAPI from '../BooksAPI'
+import Book from './book'
 
 export default class Search extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      books: [],
+      query: ''
+    }
+  }
+
+  syncBooks = (queryBooksList) => {
+    return(queryBooksList.map(book => {
+      const myBook = this.props.books.find(item => item.id === book.id);
+      if (myBook) {
+        book['shelf'] = myBook.shelf;
+      }
+      return book;
+    }))
+  }
+
+  inputChange = (event) => {
+    const query = event.target.value;
+    this.setState({query});
+    BooksAPI.search(query).then(res => this.setState({books: Array.isArray(res) ? this.syncBooks(res) : [] }));
+    //TODO: add message for instead of blank screen above
+  }
   render () {
 
-    const {searchBack} = this.props;
+    const {searchBack, switchShelf} = this.props;
+    const {books} = this.state;
 
     return (
       <div className="search-books">
@@ -17,12 +45,18 @@ export default class Search extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input
+              value={this.state.query}
+              type="text"
+              placeholder="Search by title or author"
+              onChange={this.inputChange}/>
 
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+            {books.map(book => <Book key={book.id} book={book} switchShelf={switchShelf}/>)}
+          </ol>
         </div>
       </div>
     )
