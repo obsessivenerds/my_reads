@@ -3,16 +3,14 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Search from './components/search'
 import BookList from './components/BookList'
+import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
+  state = {
       books: [],
-      showSearchPage: false
+      showSearchPage: false,
     }
-  }
+
 
   componentDidMount = () => {
     BooksAPI.getAll()
@@ -21,7 +19,7 @@ class BooksApp extends React.Component {
   }
 
   searchBack = () => {
-    this.setState({ showSearchPage: false })
+    this.setState({ showSearchPage: false });
   }
 
   bookSearch = () => {
@@ -55,11 +53,23 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <Search searchBack={this.searchBack} books={books} switchShelf={this.switchShelf}/>
-        ) : (
-          <BookList books={books} bookSearch={this.bookSearch} switchShelf={this.switchShelf}/>
-        )}
+            <Route path="/search" render={() => (
+              <Search
+                searchBack={this.searchBack}
+                books={books}
+                switchShelf={this.switchShelf}
+              />
+          )}/>
+
+          <Route exact path="/" render={() => (
+            <BookList
+            books={books}
+            bookSearch={this.bookSearch}
+            switchShelf={this.switchShelf}
+            />
+            )}
+            />
+
       </div>
     )
   }

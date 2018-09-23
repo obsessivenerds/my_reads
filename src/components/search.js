@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as BooksAPI from '../BooksAPI'
 import Book from './book'
+import { Link } from 'react-router-dom'
 
 export default class Search extends Component {
   constructor(props) {
@@ -26,17 +27,16 @@ export default class Search extends Component {
     const query = event.target.value;
     this.setState({query});
     BooksAPI.search(query).then(res => this.setState({books: Array.isArray(res) ? this.syncBooks(res) : [] }));
-    //TODO: add message for instead of blank screen above
   }
   render () {
 
-    const {searchBack, switchShelf} = this.props;
+    const {switchShelf} = this.props;
     const {books} = this.state;
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search" onClick={searchBack}>Close</a>
+          <Link to="/" className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -53,7 +53,9 @@ export default class Search extends Component {
 
           </div>
         </div>
+
         <div className="search-books-results">
+        {/*{books.length < 1 && (<div>No results found!</div>)}*/}
           <ol className="books-grid">
             {books.map(book => <Book key={book.id} book={book} switchShelf={switchShelf}/>)}
           </ol>
