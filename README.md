@@ -17,3 +17,7 @@ This project is a bookshelf app created with React that organizes books into thr
 2. react-router-dom
 3. npm
 4. Google Fonts 'Roboto' - `https://fonts.googleapis.com/css?family=Roboto:400,700`
+
+### Acknowledgements
+
+I want to extend a huge thanks to student Rodrick Bloom for his walkthrough of managing state with React at `https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X`.
