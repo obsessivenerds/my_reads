@@ -4,17 +4,21 @@ import Book from './book'
 import { Link } from 'react-router-dom'
 
 export default class Search extends Component {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      books: [],
-      query: ''
-    }
+  state = {
+    books: [],
+    query: ''
   }
 
+/*Special thanks to student @Rodrick for providing a walk-through on
+how to manage state between the search and shelf pages. The functions below
+were developed from his walk-through at https://drive.google.com/drive/u/0/folders/1SMvuv0-r98pVfZQA2IKToBVfXtOuD01X
+*/
+
+  /*function to sync book properties*/
   syncBooks = (queryBooksList) => {
     return(queryBooksList.map(book => {
+      /* see if items match and add to shelf */
       const myBook = this.props.books.find(item => item.id === book.id);
       if (myBook) {
         book['shelf'] = myBook.shelf;
@@ -23,6 +27,7 @@ export default class Search extends Component {
     }))
   }
 
+  /*get info from item, set state on response, and sync*/
   inputChange = (event) => {
     const query = event.target.value;
     this.setState({query});
@@ -45,17 +50,17 @@ export default class Search extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
+            {/*set value of input */}
             <input
               value={this.state.query}
               type="text"
               placeholder="Search by title or author"
               onChange={this.inputChange}/>
-
           </div>
         </div>
 
         <div className="search-books-results">
-        {/*{books.length < 1 && (<div>No results found!</div>)}*/}
+        {/*map over book array, set key, and assign shelf*/}
           <ol className="books-grid">
             {books.map(book => <Book key={book.id} book={book} switchShelf={switchShelf}/>)}
           </ol>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class BookList extends Component {
 
   bookShelf = (books) => {
-
+    {/*filter books by shelf and return array of shelves*/}
     const current = books.filter(book => book.shelf === 'currentlyReading');
     const want = books.filter(book => book.shelf === 'wantToRead');
     const read = books.filter(book => book.shelf === 'read');

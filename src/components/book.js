@@ -2,28 +2,28 @@ import React, { Component } from 'react'
 
 export default class Book extends Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
+  state = {
       shelf: ''
     }
-  }
 
+/*update state after component mounts */
   componentDidMount = () => {
     this.setState({shelf: this.props.book.shelf})
   }
 
+/*function to change the shelf state of a book */
   switchShelf = (event) => {
     const shelf = event.target.value;
+    /*pass new shelf into book */
     this.props.switchShelf(this.props.book, shelf);
     this.setState({shelf});
   }
 
   render () {
-
+    /*destructure elements */
     const {book} = this.props;
     const {shelf} = this.state;
+    /*set imageLinks and author values to clear error for unassigned values*/
     const {imageLinks=[], authors=['unknown'], title} = book;
 
     return (
