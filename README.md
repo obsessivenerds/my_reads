@@ -1,6 +1,6 @@
 # Udacity MyReads Project
 
-##Project Overview
+## Project Overview
 
 This project is a bookshelf app created with React that organizes books into three different shelves for "Currently Reading", "Want to Read", or "Read". New books can be added through a search function that interrogates an API with additional titles.
 
