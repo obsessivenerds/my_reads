@@ -7,8 +7,9 @@ This project is a bookshelf app created with React that organizes books into thr
 ### To View the Project
 
 1. Clone or download this repository.
-2. Use `npm start` to start a local server.
-3. Visit the site `http://localhost:3000`
+2. Install dependencies with `npm install`
+3. Use `npm start` to start a local server.
+4. Visit the site `http://localhost:3000`
 
 ### Dependencies
 
